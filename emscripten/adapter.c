@@ -91,7 +91,9 @@ extern const char * GetChipsInfo(void);
 // see Sound::Sample::CHANNELS
 #define CHANNELS 2				
 #define BYTES_PER_SAMPLE 2
-#define SAMPLE_BUF_SIZE	8192
+//#define SAMPLE_BUF_SIZE	8192
+// more flexibility for used WebAudio buffer sizes
+#define SAMPLE_BUF_SIZE	1024
 WAVE_16BS sample_buffer[SAMPLE_BUF_SIZE ];
 int samples_available= 0;
 INT32 max_pos= -1;

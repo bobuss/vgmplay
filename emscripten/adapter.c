@@ -91,7 +91,6 @@ extern const char * GetChipsInfo(void);
 // see Sound::Sample::CHANNELS
 #define CHANNELS 2				
 #define BYTES_PER_SAMPLE 2
-//#define SAMPLE_BUF_SIZE	8192
 // more flexibility for used WebAudio buffer sizes
 #define SAMPLE_BUF_SIZE	1024
 WAVE_16BS sample_buffer[SAMPLE_BUF_SIZE ];
@@ -262,9 +261,11 @@ extern INT32 EMSCRIPTEN_KEEPALIVE emu_get_max_position(void) {
 	
 	if (max_pos<0) {
 		INT32 l= GetFileLength(&VGMHead);
-		max_pos= SampleVGM2Playback(l);
+	//	max_pos= SampleVGM2Playback(l);
 	}
-	return max_pos;
+	// original vglplay seems to measure in samples
+	
+	return ((long long)max_pos)*1000/VGMSampleRate;
 }
 
 extern int EMSCRIPTEN_KEEPALIVE emu_seek_position(INT32 pos) __attribute__((noinline));
@@ -274,13 +275,13 @@ extern int EMSCRIPTEN_KEEPALIVE emu_seek_position(INT32 pos) {
 	if (pos > emu_get_max_position()) {
 		return -1;
 	}
-	SeekVGM(false, pos);
+	SeekVGM(false, ((long long)pos)*VGMSampleRate/1000);
 	return 0;
 }
 
 extern INT32 EMSCRIPTEN_KEEPALIVE emu_get_position(void) __attribute__((noinline));
 extern INT32 EMSCRIPTEN_KEEPALIVE emu_get_position(void) {
-	return PlayingTime;
+	return ((long long)SamplePlayback2VGM(PlayingTime))*1000/VGMSampleRate;
 }
 
 

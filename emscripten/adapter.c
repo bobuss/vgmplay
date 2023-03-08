@@ -261,7 +261,7 @@ extern INT32 EMSCRIPTEN_KEEPALIVE emu_get_max_position(void) {
 	
 	if (max_pos<0) {
 		INT32 l= GetFileLength(&VGMHead);
-	//	max_pos= SampleVGM2Playback(l);
+		max_pos= SampleVGM2Playback(l);
 	}
 	// original vglplay seems to measure in samples
 	

@@ -13,7 +13,7 @@ The project is based on version vgmPlay0.40.6. It includes most of the original 
 
 ## Changes from Bertrand Tornil
 
-./emscripted.sh generates an audioWorklet compatible js file `htdocs/vgm.js`, useable with [LegacyPlayer](https://github.com/bobuss/LegacyPlayer).
+./makeEmscripten.sh generates an audioWorklet compatible js file `htdocs/vgm.js`, useable with [LegacyPlayer](https://github.com/bobuss/LegacyPlayer).
 
 ## Credits
 Based on original C code of vgmPlay (see http://vgmrips.net/forum/viewtopic.php?t=112).
